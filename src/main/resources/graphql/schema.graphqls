@@ -1,0 +1,28 @@
+
+type Professores {
+    id: ID!
+    ni: String!
+    nome: String!
+    cel: String
+    ocup: String
+}
+# Criando o tipo Turma 
+type Turma {
+    id: ID!
+    cod: String!
+    turma: String!
+
+}
+
+# Criando a Query para realizar a consulta 
+type Query {
+    professores: [Professores!]!
+    turma: [Turma!]!
+}
+
+# Criando o mutation, para Crud
+type Mutation {
+    createProfessor(ni: String!, nome: String!, cel: String, ocup: String): [Professores!]!
+    updateProfessor(id: ID!, ni: String!, nome: String!, cel: String, ocup: String): [Professores!]!
+    deleteProfessor(id: ID!): [Professores!]!
+}
