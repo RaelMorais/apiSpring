@@ -2,6 +2,9 @@ package br.com.apiprofessores.api.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.apiprofessores.api.entity.Ambiente;
 import br.com.apiprofessores.api.service.AmbienteService;
 
-
 @RestController
 @RequestMapping("ambi/")
+@Tag(name = "/usuario")
 public class AmbienteController {
 
     private final AmbienteService ambienteService;
@@ -29,6 +32,10 @@ public class AmbienteController {
 
 
     @PostMapping
+    @Operation(summary = "Salva o ambiente escolar", description = "Métodod para salvar ambiente")
+    @ApiResponse(responseCode = "201", description = "Usuario gravado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Ambiente já cadastrado")
+    @ApiResponse(responseCode = "500", description = "Erro no servidor")
     public List<Ambiente> create(@RequestBody Ambiente ambiente) {
         return ambienteService.create(ambiente);
     }
